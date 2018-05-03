@@ -1,0 +1,17 @@
+.Flex-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 10vh;
+  width: 100vw;
+}
+.Flex-header {
+  display: flex;
+  line-height: 1px;
+  width: 100%;
+  height: 50%;
+}
+.Flex-toggle {
+  display:flex;
+  height: 20%;
+}
