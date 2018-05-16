@@ -32,9 +32,8 @@ const mapResults = res => {
     })
 }
 
-function SimpleExpansionPanel(props) {
-    const { classes } = props;
-    console.log(props.props)
+function SimpleExpansionPanel (props) {
+    const { classes } = props
     return (
         <div className={classes.root}>
             {mapResults(props.props)}

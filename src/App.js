@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import './App.css'
-import Toggles from './components/genres-platforms'
+import Toggles from './components/simple-searches'
 import Texts from './components/text-search'
 import Panels from './ui/expansion-panels'
 import Button from 'material-ui/Button'
 import Search from './components/interpreter'
+import Title from './ui/title-bar'
 
 class App extends Component {
 
@@ -12,15 +13,27 @@ class App extends Component {
         search: false,
         genres: [],
         platforms: [],
-        franchise: '',
-        character: '',
+        franchises: '',
+        characters: '',
         title: '',
-        company: '',
+        companies: '',
+        order: '',
+        limit: 0,
         results: []
     }
 
     setResults = (type, value) => {
         this.setState({[type]: value})
+    }
+
+    setData = (data, games) => {
+        console.log(data)
+        if (games) {
+            const filtered = data.filter(game => games.includes(game.id))
+            this.setState({results: filtered})
+        }
+        else
+            this.setState({results: data})
     }
 
     renderResults = () => {
@@ -44,7 +57,7 @@ class App extends Component {
 
     search = () => {
         if(this.state.search) {
-            return (<Search props={this.stopSearch}/>)
+            return (<Search stop={this.stopSearch} data={this.state} setData={this.setData}/>)
         }
         else return null
     }
@@ -53,6 +66,8 @@ class App extends Component {
     return (
         <div>
             <header>
+                <Title/>
+                <hr/>
                 <Texts setResults={this.setResults}/>
                 <br/>
                 <hr/>

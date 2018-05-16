@@ -1,6 +1,5 @@
 import React from 'react'
 import Toggle from 'material-ui/Switch'
-import Panels from '../ui/expansion-panels'
 import Checkbox from 'material-ui/Checkbox'
 
 class Data extends React.Component {
@@ -29,17 +28,6 @@ class Data extends React.Component {
             }
         }
     }
-
-    // renderResults = () => {
-    //     if (this.state.results.length > 0) {
-    //         return (
-    //             <div>
-    //                 <br/>
-    //                 <Panels props={this.state.results}/>
-    //             </div>
-    //         )
-    //     }
-    // }
 
     handleChecked = event => {
         const target = event.target
@@ -87,7 +75,7 @@ class Data extends React.Component {
 
                     Xbox <Checkbox name="11" id="platforms" color="primary" onChange={this.handleChecked}/>
 
-                    Gamecube <Checkbox name="2" id="platforms" color="primary" onChange={this.handleChecked}/>
+                    Gamecube <Checkbox name="21" id="platforms" color="primary" onChange={this.handleChecked}/>
 
                     Ps3 <Checkbox name="9" id="platforms" color="primary" onChange={this.handleChecked}/>
 
@@ -106,9 +94,6 @@ class Data extends React.Component {
                     Pc <Checkbox name="6" id="platforms" color="primary" onChange={this.handleChecked}/>
 
                 </div>
-                {/*<Results genres={this.state.genres} text={this.state.text} results={this.setResults} platforms={this.state.platforms}*/}
-                {/*characters={this.state.characters} franchises={this.state.franchises}/>*/}
-                {/*{this.renderResults()}*/}
             </div>
         )
     }
