@@ -1,5 +1,6 @@
 import React from 'react'
 import Text from 'material-ui/TextField'
+import Paper from 'material-ui/Paper'
 
 class Texts extends React.Component {
 
@@ -11,6 +12,7 @@ class Texts extends React.Component {
     render() {
         return (
             <div>
+                <Paper elevation={10} style={{padding: 12, margin: 32, paddingBottom: 52, backgroundColor: 'light blue'}}>
                 <div style={{textAlign: 'center'}}>
                     <h3>Text Search</h3>
 
@@ -23,6 +25,7 @@ class Texts extends React.Component {
                     <Text style={{marginLeft: '20px'}} helperText="Company (e.g. Capcom)" type="type" id="companies" onChange={this.handleText}/>
 
                 </div>
+                </Paper>
             </div>
         )
     }

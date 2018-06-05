@@ -9,7 +9,6 @@ var host = process.env.HOST || '0.0.0.0';
 var port = process.env.PORT || 8080;
 
 
-
 // Grab the blacklist from the command-line so that we can update the blacklist without deploying
 
 // again. CORS Anywhere is open by design, and this blacklist is not used, except for countering

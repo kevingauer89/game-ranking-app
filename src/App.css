@@ -15,3 +15,14 @@
   display:flex;
   height: 20%;
 }
+.Menus {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.Slider {
+  border: 2px;
+}
+.Right {
+    margin-right: 6%;
+}

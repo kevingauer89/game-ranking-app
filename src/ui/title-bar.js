@@ -4,8 +4,7 @@ import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
-import IconButton from 'material-ui/IconButton';
-import MenuIcon from 'material-ui/Menu';
+import Logo from '../logo.jpg'
 
 const styles = {
     root: {
@@ -26,6 +25,7 @@ function ButtonAppBar(props) {
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
+                    <img src={Logo} style={{width: 40, height: 40}} alt=""/>
                     <Typography style={{textAlign: 'center'}} variant="title" color="inherit" className={classes.flex}>
                         GameNav
                     </Typography>
@@ -33,7 +33,7 @@ function ButtonAppBar(props) {
                 </Toolbar>
             </AppBar>
         </div>
-    );
+    )
 }
 
 export default withStyles(styles)(ButtonAppBar);

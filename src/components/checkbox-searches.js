@@ -16,7 +16,7 @@ class Data extends React.Component {
         this.props.setResults(type, deleted)
     }
 
-    handleState = (type, value, id, ...ids) => {
+    handleState = (type, id, value, ...ids) => {
         if (!value)
             this.handleDelete(type, id)
         else {
@@ -33,8 +33,8 @@ class Data extends React.Component {
         const target = event.target
         const type = target.id
         const value = target.checked
-        const id = Number.parseInt(target.name)
-        this.handleState(type, value, id, id)
+        const id = Number.parseInt(target.name, 10)
+        this.handleState(type, id, value, id)
     }
 
     render() {

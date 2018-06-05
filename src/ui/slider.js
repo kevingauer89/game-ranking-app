@@ -1,41 +1,54 @@
+import 'rc-slider/assets/index.css';
+import 'rc-tooltip/assets/bootstrap.css'
 import React from 'react';
-import Slider, { createSliderWithTooltip } from 'rc-slider'
+import Slider from 'rc-slider/lib'
+import Tooltip from 'rc-tooltip'
 
-const style = { width: 600, margin: 50 };
-
-function log(value) {
-    console.log(value)
+const style = {
+    width: '75%',
+    margin: '2%',
+    marginLeft: '12%'
 }
+const Handle = Slider.Handle
 
-
-function percentFormatter(v) {
-    return `${v} %`;
-}
-
-const SliderWithTooltip = createSliderWithTooltip(Slider);
+const handle = (props) => {
+    const { value, dragging, index, ...restProps } = props;
+    return (
+        <Tooltip
+            prefixCls="rc-slider-tooltip"
+            overlay={value}
+            visible={dragging}
+            placement="top"
+            key={index}
+        >
+            <Handle value={value} {...restProps} />
+        </Tooltip>
+    );
+};
 
 class CustomizedSlider extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            value: 50,
-        };
-    }
+
+    state = {
+            value: 0
+        }
+
     onSliderChange = (value) => {
-        log(value);
-        this.setState({
-            value,
-        });
+        this.setState({value: value})
     }
+
     onAfterChange = (value) => {
-        console.log(value); //eslint-disable-line
+        this.props.setResults("rating", value)
     }
+
     render() {
         return (
-            <Slider value={this.state.value}
-                    onChange={this.onSliderChange} onAfterChange={this.onAfterChange}
-            />
-        );
+            <div style={style}>
+                <Slider onChange={this.onSliderChange} handle={handle} onAfterChange={this.onAfterChange}
+                        trackStyle={{backgroundColor: 'black'}} handleStyle={{borderColor: 'black'}} railStyle={{backgroundColor: 'gray'}}/>
+                <br/>
+                <div style={{textAlign: 'center'}}> Rating: {this.state.value} </div>
+            </div>
+        )
     }
 }
 export default CustomizedSlider

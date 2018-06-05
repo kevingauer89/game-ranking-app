@@ -1,6 +1,8 @@
 import React from 'react'
 import Igdb from 'igdb-api-node'
 
+const API = process.env.REACT_APP_API_KEY
+
 class Results extends React.Component {
 
     state = {
@@ -8,6 +10,7 @@ class Results extends React.Component {
     }
 
     componentDidMount() {
+        console.log(process.env)
         this.setFilters()
         this.checkSearches()
     }
@@ -20,6 +23,18 @@ class Results extends React.Component {
         }
         if (this.props.data.platforms.length > 0) {
             filter[`platforms-in`] = this.props.data.platforms
+            this.setState({filter: filter})
+        }
+        if (this.props.data.game_modes > 0) {
+            filter[`game_modes-in`] = this.props.data.game_modes
+            this.setState({filter: filter})
+        }
+        if (this.props.data.esrb > 0) {
+            filter[`esrb.rating-in`] = this.props.data.esrb
+            this.setState({filter: filter})
+        }
+        if (this.props.data.rating > 0) {
+            filter[`total_rating-gte`] = this.props.data.rating
             this.setState({filter: filter})
         }
     }
@@ -49,7 +64,6 @@ class Results extends React.Component {
     }
 
     search = (type, ret ='id' ) => {
-        const API = '72c0ae10589b27ff325dba3c91cb55d7'
         Igdb(API)[type]({
                 limit: 1,
                 search: this.props.data[type]
@@ -69,7 +83,7 @@ class Results extends React.Component {
             limit: 10,
             search: this.props.data.title
         }
-        if (this.props.data.limit > 0)
+        if (this.props.data.limit > 10)
             search.limit = this.props.data.limit
         if (this.props.data.order.length > 0)
             search.order = this.props.data.order
@@ -80,14 +94,17 @@ class Results extends React.Component {
     }
 
     mainSearch = (games) => {
-        const API = '72c0ae10589b27ff325dba3c91cb55d7'
         const search = this.setSearch(games)
         console.log(search)
         Igdb(API).games(
                search,
             [
                 'name',
-                'summary'
+                'summary',
+                'total_rating',
+                'genres',
+                'platforms',
+                'game_modes'
             ]).then(res => {
             if ('ids' in search)
                 this.props.setData(res.body)
